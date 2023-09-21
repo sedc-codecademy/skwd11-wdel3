@@ -1,0 +1,38 @@
+<!-- <h1>Hello from app component</h1> -->
+<nav>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+</nav>
+
+<!--  DATA BINDING -->
+<!--  String interpolation -->
+<h1>{{ title }}</h1>
+
+<p>User one:</p>
+<p>First name: {{ user.firstName }}</p>
+<p>Last name: {{ user.lastName }}</p>
+<p>Age: {{ user.age }}</p>
+
+<!-- Property binding -->
+<p [style.color]="favoriteColor">PROPERTY BINDING</p>
+<!-- <img [src]="imageUrl"/> -->
+
+<!-- Event binding -->
+<button (click)="onTitleChange()">Change title!</button>
+<br><br>
+
+<!-- Two-way binding -->
+<button (click)="onSelectRandomNumber()">Select random number</button>
+<h3>Selected random number: {{ randomNumber }}</h3>
+<input [(ngModel)]="randomNumber">
+
+<app-home
+[userData]="userTwo"
+(dataToBeSent)="onDataReceive($event)"
+></app-home>
+
+<h3>{{ receivedData }}</h3>
+
