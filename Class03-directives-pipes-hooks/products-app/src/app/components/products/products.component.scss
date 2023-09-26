@@ -1,0 +1,57 @@
+$card-background: #5fa7db;
+
+.product-card {
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    transition: transform 0.2s;
+  
+    &:hover {
+      transform: translateY(-5px);
+    }
+  
+    .product-image {
+      width: 100px; /* Adjust the image width as needed */
+      height: 100px; /* Adjust the image height as needed */
+      background-color: $card-background; /* Placeholder for product image */
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+  
+    .product-details {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+  
+      h3 {
+        font-size: 1.25rem;
+        margin: 0 0 10px;
+      }
+  
+      .price {
+        font-weight: bold;
+        margin: 0 0 5px;
+      }
+  
+      .description {
+        margin: 0 0 5px;
+      }
+  
+      .expiration {
+        font-style: italic;
+        color: #888;
+        font-size: 0.9rem;
+        margin-top: auto;
+      }
+
+      button {
+        height: 30px;
+        width: 100px;
+      }
+    }
+  }
+  

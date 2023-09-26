@@ -1,0 +1,28 @@
+<!-- <label>Test input: </label>
+<input type="text">
+<br>
+<button>Test Hooks</button>
+<p>Input value: {{ inputValue }}</p> -->
+
+<h1>Products</h1>
+
+<div class="product-card" *ngFor="let product of products">
+    <div class="product-image"></div>
+    <div class="product-details">
+        <h3>{{ product.name }}</h3>
+        <p class="price">Price: {{ product.price }}</p>
+        <p class="description">{{ product.description }}</p>
+        <p class="expiration">Expires: {{ product.expirationDate}}</p>
+
+        <div *ngIf="product.available">
+            <button>Buy</button>
+        </div>
+        <div *ngIf="!product.available">
+            <p>This product is out of stock</p>
+        </div>
+
+        <!-- Make button disabled if product is not available -->
+        <!-- <button [disabled]="!product.available" >Buy</button> -->
+
+    </div>
+</div>
