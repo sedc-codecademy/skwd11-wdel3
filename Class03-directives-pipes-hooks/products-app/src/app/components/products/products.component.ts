@@ -4,7 +4,7 @@ import { Product } from 'src/app/interfaces/product.interface';
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss']
+  styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit, OnDestroy, DoCheck, AfterViewInit {
 
