@@ -135,7 +135,10 @@ export class MyComponent {
 
 ## Singleton Pattern
 
-Angular services are typically created as singletons. This means that there is only one instance of the service throughout the application. When a service is injected into multiple components, they all share the same instance.
+Angular services are typically created as singletons, provided on the root level of the application. 
+This means that there is only one instance of the service throughout the application, which means that all the components that inject the service via dependency injection share the same instance of the service. 
+
+Services can also be injected on a module level or even on a component level but in such case, a separate instance of the service is created each time it is provided somewhere.
 
 ## Summary
 
