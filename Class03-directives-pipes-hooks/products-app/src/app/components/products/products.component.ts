@@ -56,7 +56,7 @@ export class ProductsComponent implements OnInit, OnDestroy, DoCheck, AfterViewI
 
   // Is always called first, when component object is instantiated
   constructor(){
-    console.log('Constructor called')
+    console.log('Constructor called');
   }
 
   // Is called when component is initialized

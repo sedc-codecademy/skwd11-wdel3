@@ -6,6 +6,8 @@ $color-warning: #ebad4e;
 $color-danger: #ff534f;
 $color-white: #f7f7f7;
 $color-black: #161616;
+$color-border: lightgray;
+$button-disabled: #ccc;
 
 @mixin flex-navbar() {
     display: flex;
