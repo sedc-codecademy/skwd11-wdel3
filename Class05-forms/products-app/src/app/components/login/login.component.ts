@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { userCredentials } from 'src/app/interfaces/userCredentials.inteface';
+import { LoginUser } from 'src/app/interfaces/loginUser';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
       // const userEmail2 = this.loginForm.controls?.['email'].value;
       const userPassword = this.loginForm.get('password')?.value;
 
-      const credentials: userCredentials = {
+      const credentials: LoginUser = {
         email: userEmail,
         password: userPassword,
       };

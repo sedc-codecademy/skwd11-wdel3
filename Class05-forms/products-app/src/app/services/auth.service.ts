@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { userCredentials } from '../interfaces/userCredentials.inteface';
+import { LoginUser } from '../interfaces/loginUser';
 import { users } from '../db/users';
 
 @Injectable({
@@ -7,12 +7,12 @@ import { users } from '../db/users';
 })
 export class AuthService {
 
-  private USERS: userCredentials[] = users;
+  private USERS: LoginUser[] = users;
   private isUserLoggedIn: boolean = false;
 
   constructor() { }
 
-  login(loginUserData: userCredentials): boolean {
+  login(loginUserData: LoginUser): boolean {
 
     const {email, password} = loginUserData;
 
