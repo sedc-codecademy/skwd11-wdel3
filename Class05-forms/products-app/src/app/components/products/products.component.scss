@@ -1,0 +1,5 @@
+@use '../../../styles.scss';
+
+.products {
+    @include styles.flex();
+}

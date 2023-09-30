@@ -1,0 +1,12 @@
+<div class="product-card">
+    <h2 class="product-title">{{ productObj.name }}</h2>
+    <p class="product-description">{{ productObj.description }}</p>
+    <div class="product-details">
+        <p class="product-price">Price: {{ productObj.price | currency: 'EUR': 'symbol'}}</p>
+        <p class="product-quantity">InStock: {{ productObj.quantity }}</p>
+    </div>
+    <button
+    [disabled]="!productObj.available"
+    (click)="onBuyProduct(productObj.id)"
+    >Buy now</button>
+</div>
