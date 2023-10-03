@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/interfaces/product.interface';
 import { LoggerService } from 'src/app/services/logger.service';
 import { ProductsService } from 'src/app/services/products.service';
@@ -14,7 +15,8 @@ export class ProductsComponent implements OnInit {
 
   constructor( 
     private readonly productService: ProductsService,
-    private readonly loggerService: LoggerService 
+    private readonly loggerService: LoggerService,
+    private readonly router: Router 
     ){}
 
   ngOnInit(): void {
@@ -28,4 +30,7 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  backToHome(): void {
+    this.router.navigate(['/home'])
+  }
 }

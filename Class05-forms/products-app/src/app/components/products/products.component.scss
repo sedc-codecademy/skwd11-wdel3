@@ -3,3 +3,9 @@
 .products {
     @include styles.flex();
 }
+
+button {
+    @include styles.button-style();
+    float: right;
+    margin: 10px;
+}
