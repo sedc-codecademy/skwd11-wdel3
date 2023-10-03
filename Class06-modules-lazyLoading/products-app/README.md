@@ -1,54 +1,101 @@
-## Handling Forms in Angular
+# Optimizing Angular applications by using feature modules and lazy loading
 
-Handling user input with forms is the cornerstone of many common applications. Applications use forms to enable users to log in, to update a profile, to enter sensitive information, and to perform many other data-entry tasks.
-Angular provides two different approaches to handling user input through forms: reactive and template-driven. Both capture user input events from the view, validate the user input, create a form model and data model to update, and provide a way to track changes.
+## Feature modules 
 
-### Template-Driven Forms
+## Why code splitting matters
+The ever growing complexity of web applications has led to a significant increase in the amount of JavaScript shipped to users. Large JavaScript files can noticeably delay interactivity, so it can be a costly resource, especially on mobile.
 
-A template-driven form is the simplest way to build a form in Angular. It uses Angular's two-way data-binding directive (ngModel) to create and manage the underlying form instance and to update the data model in the component as changes are made in the template and vice versa.. Additionally, as the name suggests, a template form is mainly driven by the view component.
+The most efficient way to shrink JavaScript bundles without sacrificing features in your applications is to introduce aggressive code splitting.
 
-### Reactive Forms
+Code splitting lets you divide the JavaScript of your application into multiple chunks associated with different routes or features. This approach only sends users the JavaScript they need during the initial application load, keeping load times low.
 
-Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes.
-Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
+Feature modules are NgModules for the purpose of organizing code.
 
-### Reactive VS Template-Driven Forms
+As your application grows, you can organize code relevant for a specific feature. This helps apply clear boundaries for features. 
+With feature modules, you can keep code related to a specific functionality or feature separate from other code. 
+Delineating areas of your application helps with collaboration between developers and teams, separating directives, and managing the size of the root module.
 
-Reactive forms differ from template-driven forms in distinct ways. Reactive forms provide synchronous access to the data model, immutability with observable operators, and change tracking through observable streams.
-Template-driven forms let direct access modify data in your template, but are less explicit than reactive forms because they rely on directives embedded in the template, along with mutable data to track changes asynchronously. See the Forms Overview for detailed comparisons between the two paradigms.
+### Core modules vs. feature modules vs shared modules
 
-Overall, template-driven forms are easier to use and require less code to create, but they offer less flexibility and control than reactive forms.
-Reactive forms are more powerful and offer greater control over form behavior, but they require more code and are more complex to set up and use.
+**Core Module**
+The Core Module in a project using Angular plays a crucial role in providing essential services, components, and configurations that are used throughout the application. It serves as a central module for core functionality that is shared across multiple feature modules. The Core Module is typically responsible for handling authentication, API services, error handling, logging, and other common functionalities required by the application.
 
-![Forms](https://www.codemotion.com/magazine/wp-content/uploads/2019/12/MY-IMAGE_2_d214d464f84433ceba6eff2534deb36c_800.png "Forms")
+When creating the Core Module, it is important to include services that are singletons and need to be shared across the application. This includes services like authentication service, data service, and logging service. Additionally, components that are used globally, such as header, footer, or navigation components, can also be included in the Core Module.
 
-Reactive and Template-Driven under the hood are implemented in the same way: there is a FormGroup for the whole form, and one FormControl instance per each individual control.
+**Feature Modules**
+Feature Modules are a way to organize related components, services, and other code within an Angular application. They encapsulate a specific feature or functionality and provide a modular structure to the application. Feature Modules allow for better separation of concerns and code reusability.
 
-The difference is that, with Reactive Forms we are defining the form model programmatically in an explicit way in our component class, and we then link the form model to the template using directives such as
-formGroup or formControlName.
+By creating feature modules you can group together all the components and other related files that are required for a specific feature. This makes managing and maintaining the codebase easier as each feature module focuses on a specific part of the application. It also enables better collaboration among developers working on different features. Feature Modules can be independently developed and shared across multiple projects.
 
-This is as opposed to template driven forms, where the same form model made of a FormGroup and FormControl instances is built behind the scenes for us by a series of directives applied to the template, like ngForm and ngModel.
+**Shared Module**
+A shared module in Angular is a module that contains components, directives, and pipes that are shared across multiple feature modules. It allows for the centralization and reusability of common UI components, services, and other code throughout the application. By creating a shared module, you can avoid code duplication and promote consistency in the project.
 
-### Validating input in template-driven forms
+A shared module typically includes components, directives, and pipes that are commonly used across multiple feature modules. Examples of shared components may include buttons, input fields, modals, and tooltips. Services that are shared across different modules, such as logging services or utility services can also be included in the shared module.
 
-To add validation to a template-driven form, you add the same validation attributes as you would with native HTML form validation.
-Angular uses directives to match these attributes with validator functions in the framework.
 
-Every time the value of a form control changes, Angular runs validation and generates either a list of validation errors that results in an INVALID status, or null, which results in a VALID status.
+### Creating a feature module
+Assuming that we have an existing angular application, a feature module can be created by running the following command 
+` ng generate module NewFeature ` 
 
-You can then inspect the control's state by exporting ngModel to a local template variable.
+This causes the CLI to create a folder called new-feature with a file inside called new-feature.module.ts with the following contents:
 
-### Validating input in reactive forms
+```
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
-In a reactive form, the source of truth is the component class. Instead of adding validators through attributes in the template, you add validator functions directly to the form control model in the component class. Angular then calls these functions whenever the value of the control changes.
+@NgModule({
+  imports: [
+    CommonModule
+  ],
+  declarations: []
+})
+export class NewFeatureModule { }
+```
 
-#### Built-in validator functions
+The structure of an NgModule is the same whether it is a root module or a feature module. 
+In the CLI generated feature module, there are two JavaScript import statements at the top of the file: 
+the first imports NgModule, which, like the root module, lets you use the @NgModule decorator; 
+the second imports CommonModule, which contributes many common directives such as ngIf and ngFor. 
+Feature modules import CommonModule instead of BrowserModule, which is only imported once in the root module. CommonModule only contains information for common directives such as ngIf and ngFor which are needed in most templates, whereas BrowserModule configures the Angular application for the browser which needs to be done only once.
 
-You can choose to write your own validator functions, or you can use some of Angular's built-in validators.
-[Validators documentation](https://blog.angular-university.io/angular-custom-validators/)
+The declarations array is available for you to add declarables, which are components, directives, and pipes that belong exclusively to this particular module. To add a component, enter the standard command for creating a component but make sure that you are running the command inside the feature module level.
 
-The same built-in validators that are available as attributes in template-driven forms, such as required and minlength, are all available to use as functions from the Validators class. For a full list of built-in validators, see the Validators API reference.
+### Importing a feature module
+To incorporate the feature module into your app, you have to let the root module, app.module.ts, know about it. Notice the CustomerDashboardModule export at the bottom of customer-dashboard.module.ts. This exposes it so that other modules can get to it. To import it into the AppModule, add it to the imports in app.module.ts and to the imports array.
 
-#### Custom validators
+![Modules](https://www.codeproject.com/KB/scripting/1248953/image001.png "Modules")
+![Modules](https://bulldogjob.com/ckeditor_assets/pictures/184/content_2.png "Modules")
 
-The built-in validators don't always match the exact use case of your application, so you sometimes need to create a custom validator.
+## Lazy-loading feature modules
+
+By default, NgModules are eagerly loaded. This means that as soon as the application loads, so do all the NgModules, whether they are immediately necessary or not. For large applications with lots of routes, consider lazy loading a design pattern that loads NgModules as needed. Lazy loading helps keep initial bundle sizes smaller, which in turn helps decrease load times.
+
+To lazy load Angular modules, use loadChildren (instead of component) in your AppRoutingModule routes configuration as follows.
+
+To lazy load Angular modules, use loadChildren (instead of component) in your AppRoutingModule routes configuration as follows.
+
+```const routes: Routes = [
+  {
+    path: 'items',
+    loadChildren: () => import('./newFeature/newFeature.module').then(m => m.NewFeatureModule)
+  }
+];
+```
+In the lazy-loaded module's routing module, add a route for the component.
+
+```
+const routes: Routes = [
+  {
+    path: '',
+    component: ItemsComponent
+  }
+];
+```
+Also be sure to remove the NewFeatureModule from the AppModule. 
+
+### forRoot() and forChild()
+
+
+The Angular CLI also adds RouterModule.forChild(routes) to feature routing modules. This way, Angular knows that the route list is only responsible for providing extra routes and is intended for feature modules. You can use forChild() in multiple modules.
+
+The forRoot() method takes care of the global injector configuration for the Router. The forChild() method has no injector configuration. It uses directives such as RouterOutlet and RouterLink.
