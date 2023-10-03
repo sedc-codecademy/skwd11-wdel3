@@ -1,0 +1,51 @@
+@use '../../../../../../styles.scss';
+
+.product-card {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    width: 300px;
+    border: 1px solid styles.$color-border;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    margin: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    .product-title {
+        font-size: 24px;
+        margin-top: 12px; 
+    }
+
+    .product-description {
+        font-size: 16px;
+        margin-top: 12;
+    }
+
+    .product-details {
+        margin-top: 12px;
+
+        .product-price {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .product-quantity {
+            font-size: 16px;
+        }
+    }
+
+    button {
+        @include styles.button-style();
+
+        &:hover {
+            background-color: styles.$color-primary;
+        }
+
+        &:disabled {
+            background-color: styles.$button-disabled;
+        }
+    }
+}

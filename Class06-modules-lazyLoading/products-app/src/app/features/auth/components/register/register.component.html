@@ -1,0 +1,53 @@
+<form [formGroup]="registerForm" (ngSubmit)="onRegisterFormSubmit()">
+  <div class="form-group">
+    <label>Email: </label>
+    <input formControlName="email" type="text" id="email" />
+    <span
+      *ngIf="
+        registerForm.get('email')?.invalid &&
+        registerForm.get('email')?.touched &&
+        registerForm.get('email')?.hasError('required')
+      "
+      >The email is required</span
+    >
+    <span
+      *ngIf="
+        registerForm.get('email')?.invalid &&
+        registerForm.get('email')?.touched &&
+        registerForm.get('email')?.hasError('email')
+      "
+      >The email is not valid</span
+    >
+  </div>
+  <div class="form-group">
+    <label>Password: </label>
+    <input formControlName="password" type="text" id="password" />
+    <span
+    *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched"
+    >The password is not valid</span>
+  </div>
+  <div class="form-group">
+    <label>First name: </label>
+    <input formControlName="firstName" type="text" id="firstName" />
+  </div>
+  <div class="form-group">
+    <label>Last name: </label>
+    <input formControlName="lastName" type="text" id="lastName" />
+  </div>
+  <div class="form-group">
+    <label>Address: </label>
+    <input formControlName="address" type="text" id="address" />
+  </div>
+
+  <div class="form-group">
+    <label>Accept terms and conditions: </label>
+    <input
+      class="checkbox"
+      formControlName="termsAndConditions"
+      type="checkbox"
+      name="termsAndConditions"
+      id="termsAndConditions"
+    />
+  </div>
+  <button type="submit" [disabled]="!registerForm.valid">Register</button>
+</form>

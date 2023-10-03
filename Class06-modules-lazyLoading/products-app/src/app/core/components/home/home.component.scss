@@ -1,0 +1,29 @@
+@use '../../../../styles.scss';
+
+.home-container {
+    background-color: styles.$home-background;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .home-container h1 {
+    font-size: 36px;
+    color: styles.$color-black;
+    margin-bottom: 10px;
+  }
+  
+  .home-container h3 {
+    font-size: 24px;
+    color: slategray;
+    margin-bottom: 20px;
+  }
+  
+  .home-container h4 a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .home-container h4 span {
+    margin-left: 5px;
+  }
+  
