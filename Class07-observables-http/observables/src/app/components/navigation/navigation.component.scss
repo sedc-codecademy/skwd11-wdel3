@@ -1,0 +1,37 @@
+@use '../../../styles.scss';
+
+nav {
+    background-color: styles.$color-black;
+    @include styles.flex();
+
+    h2 {
+        color: styles.$color-white;
+        margin-left: 20px;
+    }
+
+    ul {
+        @include styles.flex-navbar();
+        height: 60px;
+        list-style-type: none;
+        margin-right: 30px;
+
+        li {
+            margin: 0 20px;
+            font-size: large;
+
+            a {
+                color: styles.$color-white;
+                text-decoration: none;
+                font-weight: bold;
+
+                &:hover {
+                    @include styles.link-hover();
+                }
+
+                &.active {
+                    color: styles.$active-route;
+                }
+            }
+        }
+    }
+}
