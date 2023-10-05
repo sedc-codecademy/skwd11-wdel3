@@ -1,0 +1,20 @@
+<button (click)="getAllMovies()">GET ALL MOVIES</button>
+<button (click)="getMovieById('64e642d893169b2d5c0d6e28')">GET MOVIE BY ID</button>
+<div>
+  <div>
+    <h2>Available movies in our library:</h2>
+
+    <div class="moviesContainer" *ngIf="!isFetching; else loading">
+      <div *ngFor="let movie of movies">
+        <h3>{{ movie.name }}</h3>
+        <h4>{{ movie.year }}</h4>
+        <h4>{{ movie.genre }}</h4>
+        <h4>{{ movie.director }}</h4>
+      </div>
+    </div>
+
+    <ng-template #loading>
+      Loading...
+    </ng-template>
+  </div>
+</div>
