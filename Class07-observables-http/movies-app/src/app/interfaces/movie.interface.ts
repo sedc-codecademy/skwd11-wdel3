@@ -1,13 +1,15 @@
 export interface Movie {
-    id: string,
-    name: string,
-    genre: string,
-    director: string,
-    year: number,
+    id: string;
+    name: string;
+    genre: string;
+    director: string;
+    year: number;
     description: string,
-    rating: {
-        votes: number[],
-        averageValue: number
-      },
-    imageUrl: string
+    rating: Rating,
+    imageUrl: string;
+  }
+
+  export interface Rating {
+    votes: number[],
+    averageValue: number
   }
