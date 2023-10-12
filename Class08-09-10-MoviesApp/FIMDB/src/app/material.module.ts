@@ -14,6 +14,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
 
 const matModules = [
   CommonModule,
@@ -30,7 +32,9 @@ const matModules = [
   MatTooltipModule,
   MatBadgeModule,
   MatIconModule,
-  MatSliderModule
+  MatSliderModule,
+  MatProgressSpinnerModule,
+  MatChipsModule
 ]
 
 @NgModule({

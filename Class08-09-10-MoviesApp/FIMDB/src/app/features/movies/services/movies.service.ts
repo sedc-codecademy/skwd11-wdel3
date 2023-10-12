@@ -39,7 +39,6 @@ export class MoviesService {
     )
   }
 
-
   private handleError(error: any, returnValue: any): Observable<any> {
     this.loggerService.error(error);
     return of(returnValue);

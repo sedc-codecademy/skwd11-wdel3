@@ -1,0 +1,103 @@
+/* movie-details.component.scss */
+@use '../../../../../../styles.scss';
+
+.movie-details-container {
+  max-width: 80%;
+  margin: 5% auto;
+  padding: 3%;
+  background-color: styles.$color-movie-details-background;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px styles.$color-gray;
+}
+
+.movie-details-header {
+  text-align: center;
+  margin-bottom: 20px;
+
+  .chips-container {
+    @include styles.flex-center();
+    gap: 10px;
+  }
+
+  h2 {
+    font-size: 28px;
+    margin: 0;
+    padding: 10px;
+    color: styles.$color-black;
+  }
+
+  p {
+    font-size: 20px;
+    color: styles.$color-gray;
+    margin: 0;
+    padding: 6px;
+  }
+}
+
+.movie-details-content {
+  margin-top: 20px;
+
+  p {
+    font-size: 18px;
+    color: styles.$color-black;
+  }
+
+  .rating {
+    display: flex;
+    align-items: center;
+    margin: 16px 0;
+    font-size: 16px;
+
+    .star-icon {
+      font-size: 24px; /* Adjust the size as needed */
+      color: styles.$color-gold; /* Color of the stars */
+      margin-right: 4px; /* Spacing between stars */
+      text-shadow: 1px 1px 1px styles.$color-dark-slate-gray;
+    }
+
+    p {
+      margin: 0 0 0 10px;
+      font-weight: bold;
+    }
+  }
+
+  .vote-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px styles.$color-gray;
+    padding: 16px;
+
+    h2 {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .label-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .name-label {
+        flex: 1;
+        font-weight: 600;
+      }
+
+      .value-label {
+        font-weight: 600;
+      }
+    }
+
+    mat-slider {
+      width: 100%;
+      margin-bottom: 16px;
+
+      input.mat-slider-thumb-label-text {
+        font-weight: bold;
+      }
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}
