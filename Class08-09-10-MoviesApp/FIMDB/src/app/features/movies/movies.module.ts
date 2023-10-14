@@ -19,7 +19,6 @@ import { CoreModule } from 'src/app/core/core.module';
     MoviesRoutingModule,
     MaterialModule,
     CoreModule,
-    // HttpClientModule
   ]
 })
 export class MoviesModule { }
