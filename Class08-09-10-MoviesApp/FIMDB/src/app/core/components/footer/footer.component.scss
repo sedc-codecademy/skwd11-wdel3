@@ -3,8 +3,9 @@
 footer {
     background-color: styles.$color-light-gray; /* Adjust the background color as needed */
     color: styles.$color-info;
-    padding: 24px 0;
     text-align: center;
+    line-height: 0.5em;
+    padding: 1em;
   
     /* Style the footer content container */
     .footer-content {
@@ -12,19 +13,10 @@ footer {
       justify-content: space-between;
       align-items: flex-start;
       max-width: 1200px;
-      height: 80px;
+      height: 120px;
       margin: 0 auto;
-      padding: 16px 0px;
+
     }
-  
-    /* Style each footer column */
-    // .footer-column {
-    //   flex: 3;
-    // }
-  
-    // .mid {
-    //   // flex: 3;
-    // }
   
     /* Style the social icons */
     .social-icon,
@@ -44,7 +36,6 @@ footer {
   
   /* Style the copyright notice */
   .copyright {
-    margin-top: 24px;
     font-size: 16px;
     color: styles.$color-gray; /* Adjust the text color as needed */
   }

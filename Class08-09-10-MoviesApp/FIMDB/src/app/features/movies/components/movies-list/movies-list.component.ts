@@ -9,13 +9,19 @@ import { MoviesService } from '../../services/movies.service';
 })
 export class MoviesListComponent implements OnInit{
 
-  movies: Movie[] = [];
+  public movies: Movie[] = [];
   public isFetching: boolean = false;
 
-  constructor(private readonly moviesService: MoviesService){}
+  constructor(private readonly moviesService: MoviesService) {
+  }
 
   ngOnInit(): void {
-    
+    this.moviesService.getAllMovies().subscribe(movies => {
+      this.movies = movies
+      console.log(movies)
+    })
+
+    this.moviesService.isFetching.subscribe((isFetching) => (this.isFetching = isFetching));
   }
 
 }

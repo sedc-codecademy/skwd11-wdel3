@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
@@ -19,7 +18,6 @@ import { MatChipsModule } from '@angular/material/chips';
 
 const matModules = [
   CommonModule,
-  BrowserAnimationsModule,
   MatToolbarModule,
   MatMenuModule,
   MatCardModule,
