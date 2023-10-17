@@ -10,6 +10,7 @@ import { MoviesService } from '../../services/movies.service';
 export class MoviesListComponent implements OnInit{
 
   public movies: Movie[] = [];
+  public filteredMovies: Movie[] = this.movies;
   public isFetching: boolean = false;
 
   constructor(private readonly moviesService: MoviesService) {
@@ -24,4 +25,11 @@ export class MoviesListComponent implements OnInit{
     this.moviesService.isFetching.subscribe((isFetching) => (this.isFetching = isFetching));
   }
 
+  filterMovies(query: string): void {
+    if(!query) {
+      this.filteredMovies = this.movies;
+    } else {
+      this.filteredMovies = this.movies.filter((movie) => movie.name.toLowerCase().includes(query.toLowerCase()))
+    }
+  }
 }

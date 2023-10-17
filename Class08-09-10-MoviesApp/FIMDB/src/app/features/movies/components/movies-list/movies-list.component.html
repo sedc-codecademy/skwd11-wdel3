@@ -1,6 +1,7 @@
 <div class="movies-container">
+    <input type="text" (keyup)="filterMovies(searchInput.value)" #searchInput class="search-input" placeholder="Search movies">
     <div class="movies-card-container" *ngIf="!isFetching; else loading">
-        <app-movie-card class="movieCard" *ngFor="let movie of movies" [movie]="movie"></app-movie-card>
+        <app-movie-card class="movieCard" *ngFor="let movie of filteredMovies" [movie]="movie"></app-movie-card>
     </div>
 
     <ng-template #loading>
