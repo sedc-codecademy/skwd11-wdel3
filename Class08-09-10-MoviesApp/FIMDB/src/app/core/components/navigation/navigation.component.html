@@ -8,23 +8,36 @@
            [routerLinkActiveOptions]="{ exact: true }">
           Home
         </a>
-        <a mat-tab-link
+        <a 
+        *ngIf="currentUser"
+           mat-tab-link
            routerLink="/movies"
            routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }">
           Movies
         </a>
-        <a mat-tab-link
+        <a 
+          *ngIf="!currentUser"
+           mat-tab-link
            routerLink="/auth/login"
            routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }">
           Login
         </a>
-        <a mat-tab-link
+        <a 
+           *ngIf="!currentUser"
+           mat-tab-link
            routerLink="/auth/register"
            routerLinkActive="active"
            [routerLinkActiveOptions]="{ exact: true }">
           Register
+        </a>
+        <a
+        *ngIf="currentUser"
+        routerLink="/"
+        (click)="onLogout()"
+        >
+          Logout
         </a>
       </nav>
     </mat-toolbar>

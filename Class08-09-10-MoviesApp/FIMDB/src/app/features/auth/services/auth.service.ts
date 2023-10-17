@@ -1,21 +1,29 @@
 import { Injectable } from '@angular/core';
 import { LoginUser, RegisterUser, User } from '../interfaces/user.interface';
-import { BehaviorSubject, Observable, catchError, finalize, of, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  finalize,
+  of,
+  tap,
+} from 'rxjs';
 import { AuthApiService } from './auth-api.service';
 import { LoggerService } from 'src/app/core/services/logger.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   isFetching: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  currentUser$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  currentUser$: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(
+    null
+  );
 
   constructor(
     private readonly authApisService: AuthApiService,
     private readonly loggerService: LoggerService
-    ) { }
+  ) {}
 
   login = (loginData: LoginUser) => {
     this.isFetching.next(true);
@@ -24,15 +32,32 @@ export class AuthService {
       tap((user) => {
         if (user) {
           this.currentUser$.next(user);
-          this.currentUser$.subscribe(res => console.log(res))
+          this.currentUser$.subscribe((res) => console.log(res));
         }
       }),
       catchError((error) => this.handleError(error, null)),
       finalize(() => this.isFetching.next(false))
-    )
-  }
+    );
+  };
 
-  register (registerData: RegisterUser) {}
+  register = (registerData: RegisterUser) => {
+    this.isFetching.next(true);
+
+    return this.authApisService.register(registerData).pipe(
+      tap((user) => {
+        if (user) {
+          this.currentUser$.next(user);
+          this.currentUser$.subscribe((res) => console.log(res));
+        }
+      }),
+      catchError((error) => this.handleError(error, null)),
+      finalize(() => this.isFetching.next(false))
+    );
+  };
+
+  logout = () => {
+    this.currentUser$.next(null);
+  };
 
   private handleError(error: any, returnValue: any): Observable<any> {
     this.loggerService.error(error);
